@@ -1,0 +1,30 @@
+.navlogo{
+    color: wheat;
+    font-weight: bold;
+    font-style: oblique;
+    font-family: system-ui;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+}
+.navBtn{
+    margin-right: 8px;
+    color: #fffefe;
+    font-weight: 500;
+}
+.searchBox{
+    text-align: -webkit-center;
+}
+.searchBox>div{
+    margin-top: 4%;
+    background-color: wheat;
+    box-shadow: 0px 0px 5px 3px grey;
+}
+.searchBox>div>div:first-child{
+    background-color: #2f5387;
+    color: wheat;
+}
+label{
+    text-align: justify;
+    font-weight: 500;
+    color: black;
+}
