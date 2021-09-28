@@ -1,48 +1,54 @@
-<p>search-flight works!</p>
-<nav class="navbar justify-content-between p-2" style="background-color: #103a77d9;">
-    <a class="navbar-brand navlogo">Air Yatra</a>
-    <div class="form-inline">
-        <button class="btn btn-sm btn-warning navBtn" type="button">Login</button>
-        <button class="btn btn-sm btn-danger navBtn" type="button">Register</button>
+<div class="row searchStringBox m-2 p-3">
+    <div class="col-2 m-0 p-2 toFromDatBox">
+        <p>From</p>
+        <p>{{fromCity}}</p>
     </div>
-</nav>
-<div class="searchBox">
-    <div class="col-6">
-        <div class="p-2">
-            <h5 style="font-weight: bold;">Search Your Flights Here!</h5>
-        </div>
-        <div class="p-4">
-            <div action="#">
-                <div class="form-group row">
-                    <label for="fromPlace" class="col-sm-3 col-form-label" style="text-align:justify;">From Place</label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" id="fromPlace" placeholder="From Place">
-                    </div>
-                </div>
-                <br>
-                <div class="form-group row">
-                    <label for="text" class="col-sm-3 col-form-label" style="text-align:justify;">To Place</label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" id="to" placeholder="To Place">
-                    </div>
-                </div>
-                <br>
-                <div class="form-group row">
-                    <label for="date" class="col-sm-3 col-form-label" style="text-align:justify;">Journey Date</label>
-                    <div class="col-sm-8">
-                      <input type="date" class="form-control" id="date" placeholder="Journey Date">
-                    </div>
-                </div>
-                <br>
-                <div class="form-group row">
-                    <label for="class" class="col-sm-3 col-form-label" style="text-align:justify;">Class</label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" id="class" placeholder="Class">
-                    </div>
-                </div>
-                <br>
-                <button type="submit" class="btn btn-success navBtn">Find Flights</button>
+    <div class="col-1 arrowSimbol">
+        <p>=></p>
+    </div>
+    <div class="col-2 m-0 p-2 toFromDatBox">
+        <p>To</p>
+        <p>{{toCity}}</p>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-2 m-0 p-2 toFromDatBox">
+        <p>Date</p>
+        <p>{{jurneyDate}}</p>
+    </div>
+</div>
+<div class="col-12" style="background-color: white;">
+    <div class="row m-2" *ngFor="let flight of flights; let i = index">
+        <div class="col-2 m-2 p-2 flightBox">
+            <h6 class="m-0">Flight Number - <span>{{flight.flightCode}}</span></h6>
+            <h6 class="tex-primary m-2">Business Class</h6>
+            <h6 class="tex-primary m-2">{{flight.bussinessClassSeatCost}} &#8377;</h6>
+            <div>
+                <button #checkAvl (click)="checkBcAvailability(i,flight)" class="btn btn-sm btn-primary">{{bcBtnState[i]}}</button>
             </div>
         </div>
+        <div class="col-2 m-2 p-2 flightBox">
+            <h6 class="m-0">Flight Number - <span>{{flight.flightCode}}</span></h6>
+            <h6 class="tex-primary m-2">First Class</h6>
+            <h6 class="tex-primary m-2">{{flight.firstClassSeatCost}} &#8377;</h6>
+            <div>
+                <button #checkAvl (click)="checkFcAvailability(i,flight)" class="btn btn-sm btn-primary">{{fcBtnState[i]}}</button>
+            </div>
+        </div>
+        <div class="col-2 m-2 p-2 flightBox">
+            <h6 class="m-0">Flight Number - <span>{{flight.flightCode}}</span></h6>
+            <h6 class="tex-primary m-2">Second Class</h6>
+            <h6 class="tex-primary m-2">{{flight.secondClassSeatCost}} &#8377;</h6>
+            <div>
+                <button #checkAvl (click)="checkScAvailability(i,flight)" class="btn btn-sm btn-primary">{{scBtnState[i]}}</button>
+            </div>
+        </div>
+        <div class="col-2 m-2 p-2 flightBox">
+            <h6 class="m-0">Flight Number - <span>{{flight.flightCode}}</span></h6>
+            <h6 class="tex-primary m-2">Third Class</h6>
+            <h6 class="tex-primary m-2">{{flight.thirdClassSeatCost}} &#8377;</h6>
+            <div>
+                <button #checkAvl (click)="checkTcAvailability(i,flight)" class="btn btn-sm btn-primary">{{tcBtnState[i]}}</button>
+            </div>
+        </div>        
     </div>
 </div>

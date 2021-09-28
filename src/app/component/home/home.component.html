@@ -1,2 +1,62 @@
-<h1>Hello Welcome Home!</h1>
-<button>logout</button>
+<div class="searchBox">
+    <div class="col-6">
+        <div class="p-2">
+            <h5 style="font-weight: bold;">Search Your Flights Here!</h5>
+        </div>
+        <div class="p-4">
+            <form [formGroup]="searchFlightForm" (submit)="findFlights()">
+                <div class="form-group row">
+                    <label for="fromPlace" class="col-sm-3 col-form-label" style="text-align:justify;">From Place <span class="text-danger">*</span></label>
+                    <div class="col-sm-8">
+                        <select class="form-control" formControlName="from">
+                            <option *ngFor="let city of cities; let index = index" [ngValue]="city.cityId">
+                                {{city.cityName}}
+                            </option>
+                        </select>
+                      <!-- <input type="text" class="form-control" formControlName="from" placeholder="From Place"> -->
+                    </div>
+                    <div *ngIf="submitted && searchFlightForm.controls.from.errors">
+                        <div *ngIf="searchFlightForm.controls.from.errors.required" class="col-10 errorMsg">From is required</div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label for="text" class="col-sm-3 col-form-label" style="text-align:justify;">To Place <span class="text-danger">*</span></label>
+                    <div class="col-sm-8">
+                      <!-- <input type="text" class="form-control"formControlName="to" placeholder="To Place"> -->
+                      <select class="form-control" formControlName="to">
+                        <option *ngFor="let city of cities; let index = index" [ngValue]="city.cityId">
+                            {{city.cityName}}
+                        </option>
+                    </select>
+                    </div>
+                    <div *ngIf="submitted && searchFlightForm.controls.to.errors">
+                        <div *ngIf="searchFlightForm.controls.to.errors.required" class="col-10 errorMsg">To City is required</div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label for="date" class="col-sm-3 col-form-label" style="text-align:justify;">Journey Date <span class="text-danger">*</span></label>
+                    <div class="col-sm-8">
+                      <input type="date" class="form-control" formControlName="journeyDate" placeholder="Journey Date">
+                    </div>
+                    <div *ngIf="submitted && searchFlightForm.controls.journeyDate.errors">
+                        <div *ngIf="searchFlightForm.controls.journeyDate.errors.required" class="col-10 errorMsg">Journey Date is required</div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label for="class" class="col-sm-3 col-form-label" style="text-align:justify;">Class <span class="text-danger">*</span></label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" formControlName="bookingClass" placeholder="Class">
+                    </div>
+                    <div *ngIf="submitted && searchFlightForm.controls.bookingClass.errors">
+                        <div *ngIf="searchFlightForm.controls.bookingClass.errors.required" class="col-10 errorMsg">Class is required</div>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success navBtn">Find Flights</button>
+            </form>
+        </div>
+    </div>
+</div>

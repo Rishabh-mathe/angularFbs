@@ -13,23 +13,32 @@ export class RegisterComponent implements OnInit {
 
   register:RegisterDto
   registerForm:FormGroup;
+  submitted = false;
   
   constructor(private service:RegisterServiceService,private router: Router ) {}
 
   ngOnInit() {
     const TOKEN_KEY = 'auth-token';
     if(window.sessionStorage.getItem(TOKEN_KEY)){
-      this.router.navigate(["/home"]);
+      this.router.navigate(["/"]);
       return true;
     }
     this.registerForm = this.buildForm();
   }
 
+  get formControls() { return this.registerForm.controls; }
+
   buildForm():FormGroup{
     return this.service.buildRegisterForm()
   }
 
-  funcRegister(){
+  registerUser(){
+    console.log(this.registerForm)
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
+    
     const observable = this.service.userReg({
       name: this.registerForm.value.name,
       password: this.registerForm.value.password,

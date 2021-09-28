@@ -31,3 +31,14 @@
 .fieldBox{
     margin-bottom: 10px;
 }
+
+input.ng-invalid.ng-touched{
+    border-width: 2px;
+    border-color: red;
+}
+
+.errorMsg{
+    text-align: right;
+    color: #ff0000fa;
+    font-weight: 800;
+}

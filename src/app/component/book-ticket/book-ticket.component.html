@@ -1,0 +1,83 @@
+<form [formGroup]="ticket" (submit)="bookTicket()">
+    <div class="row m-2 p-2">
+        <div class="col-3 form-group">
+            <!-- <div *ngIf="submitted && registerForm.controls.name.errors">
+                <div *ngIf="registerForm.controls.name.errors.required" class="col-10 errorMsg">Name is required</div>
+            </div> -->
+            <input type="hidden" formControlName="id" class="form-control"/>
+            <label class="col-form-label">Flight Code <span class="text-danger">*</span></label>
+            <input type="text" formControlName="flightId" class="form-control"/>
+        </div>
+        <div class="col-3 form-group">
+            <!-- <div *ngIf="submitted && registerForm.controls.name.errors">
+                <div *ngIf="registerForm.controls.name.errors.required" class="col-10 errorMsg">Name is required</div>
+            </div> -->
+            <label class="col-form-label">Journey Date <span class="text-danger">*</span></label>
+            <input type="text" formControlName="dateOfJourney" class="form-control"/>
+        </div>
+        <div class="col-3 form-group">
+            <!-- <div *ngIf="submitted && registerForm.controls.name.errors">
+                <div *ngIf="registerForm.controls.name.errors.required" class="col-10 errorMsg">Name is required</div>
+            </div> -->
+            <label class="col-form-label">Class <span class="text-danger">*</span></label>
+            <input type="text" formControlName="bookingClass" class="form-control"/>
+        </div>
+        <div class="col-3 form-group">
+            <!-- <div *ngIf="submitted && registerForm.controls.name.errors">
+                <div *ngIf="registerForm.controls.name.errors.required" class="col-10 errorMsg">Name is required</div>
+            </div> -->
+            <label class="col-form-label">Total Tickets <span class="text-danger">*</span></label>
+            <input type="text" value="{{totalTks}}" formControlName="totTickets" class="form-control"/>
+        </div>
+    </div>
+    <div class="m-2 text-secondary"><h5>Passanger Details</h5></div>
+    <div class="row m-2 p-2 airLineFormBoxes">
+        <div class="col-11"></div>
+        <button *ngIf="edit" class="col-1 btn btn-sm btn-primary" type="button" style="margin-bottom: 15px;" (click)="onAddRow()">Add Passanger</button>
+        <table>
+            <thead>
+                <tr>
+                    <td style="display: none;"></td>
+                    <td>Name</td>
+                    <td>Age</td>
+                    <td>Meal</td>
+                    <td>Gender</td>
+                    <td>Status</td>
+                    <td *ngIf="edit"></td>
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let passanger of ticket.get('passangerDlt')?.controls; let index = index">
+                <td style="display:none;"><input class="form-control" [formControl]="passanger.get('id')" /></td>
+                <td><input class="form-control" [formControl]="passanger.get('passangerName')" /></td>
+                <td><input class="form-control" [formControl]="passanger.get('passangerAge')" /></td>
+                <td>
+                    <select class="form-control" [formControl]="passanger.get('foodType')">
+                        <option>VEG</option>
+                        <option>NON-VEG</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control" [formControl]="passanger.get('gender')">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control" [formControl]="passanger.get('ticketStatus')">
+                        <option>Confirm</option>
+                        <option>Cancel</option>
+                    </select>
+                </td>
+                <td *ngIf="edit">
+                  <button class="btn btn-sm btn-warning" type="button" (click)="onRemoveRow(index)">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row m-2 p-2">
+        <div class="col-11"></div>
+        <button type="submit" class="col-1 btn btn-sm btn-success">Save</button>
+    </div>
+</form>

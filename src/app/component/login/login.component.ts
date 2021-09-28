@@ -12,10 +12,15 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class LoginComponent implements OnInit {
   loginuser:LoginDto
   loginForm:FormGroup;
-  
+  authUser:boolean=false;
   constructor(private service:AuthenticationService,private router: Router ) {}
 
   ngOnInit() {
+    const TOKEN_KEY = 'auth-token';
+    if(window.sessionStorage.getItem(TOKEN_KEY)){
+      this.router.navigate(["/"]);
+      return true;
+    }
     this.loginForm = this.buildForm();
   }
 
@@ -23,7 +28,7 @@ export class LoginComponent implements OnInit {
     return this.service.buildLoginForm()
   }
 
-  funcLogin(){
+  login(){
     const TOKEN_KEY = 'auth-token';
     const observable = this.service.userAuth({
       username: this.loginForm.value.username,
@@ -37,7 +42,8 @@ export class LoginComponent implements OnInit {
         console.log(res);
     },
     (err)=>{
-      this.router.navigate(["/login"]);
+      this.authUser = true;
+      //this.router.navigate(["/login"]);
       console.log(err);
     })
   }

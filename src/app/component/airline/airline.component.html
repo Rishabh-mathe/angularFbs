@@ -1,0 +1,139 @@
+<form [formGroup]="airLineForm" (submit)="saveAirline()">
+    <div class="m-2 text-secondary"><h5>Owner Details</h5></div>
+    <input type="hidden" formControlName="id" class="form-control"/>
+    <div class="row m-2 p-2 airLineFormBoxes">
+        <div class="col-3 form-group">
+            <label class="col-form-label">Full Name <span class="text-danger">*</span></label>
+            <input type="text" formControlName="ownerName" class="form-control"/>
+        </div>
+        <div class="col-3 form-group">
+            <label class="col-form-label">Mobile Number <span class="text-danger">*</span></label>
+            <input type="text" formControlName="ownerMobile" class="form-control"/>
+        </div>
+        <div class="col-3 form-group">
+            <label class="col-form-label">Email Address <span class="text-danger">*</span></label>
+            <input type="text" formControlName="ownerEmail" class="form-control"/>
+        </div>
+        <div class="col-3 form-group">
+            
+        </div>
+        <div class="row m-0 p-0" *ngFor="let addr of airLineForm.get('ownerAddress')?.controls;let index = index">
+          <div class="col-3 form-group">
+            <input type="hidden" class="form-control" [formControl]="addr.get('id')"/>
+              <label class="col-form-label">Street <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" [formControl]="addr.get('street')"/>
+          </div>
+          <div class="col-3 form-group">
+              <label class="col-form-label">City <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" [formControl]="addr.get('city')"/>
+          </div>
+          <div class="col-3 form-group">
+              <label class="col-form-label">State <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" [formControl]="addr.get('state')"/>
+          </div>
+          <div class="col-3 form-group">
+              <label class="col-form-label">Pin Code <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" [formControl]="addr.get('pinCode')"/>
+          </div>
+        </div>
+    </div>
+    <div class="m-2 text-secondary"><h5>Airline Details</h5></div>
+    <div class="row m-2 p-2 airLineFormBoxes">
+        <div class="col-3 form-group">
+            <label for="" class="col-form-label">Name <span class="text-danger">*</span></label>
+            <input type="text" formControlName="airlineName" class="form-control"/>
+        </div>
+        <div class="col-3 form-group">
+            <label for="" class="col-form-label">Short Name <span class="text-danger">*</span></label>
+            <input type="text" formControlName="airLineShortName" class="form-control"/>
+        </div>
+        <div class="col-3 form-group">
+            <input 
+            type="file" 
+            class="form-control"
+            (change)="onFileChange($event)"
+            style="margin-top: 38px;">
+        </div>
+        <div class="col-3">
+            <img [src]="imageSrc" *ngIf="imageSrc" class="logo">
+        </div>
+    </div>
+    <div class="m-2 text-secondary"><h5>Flights Details</h5></div>
+    <!-- <div class="row m-2 p-2 airLineFormBoxes">
+        <div class="addButton col-1">
+            <h5>+</h5>
+        </div>
+    </div> -->
+    <div class="row m-2 p-2 airLineFormBoxes">
+        <div class="col-11"></div>
+        <button class="col-1 btn btn-sm btn-primary" type="button" style="margin-bottom: 15px;" (click)="onAddRow()">Add Flight</button>
+        <table>
+            <thead>
+                <tr>
+                    <td>Flight Code</td>
+                    <td>From Time</td>
+                    <td>To Time</td>
+                    <td style="width: 16%;">Days</td>
+                    <td>BC Seats</td>
+                    <td>BC Cost</td>
+                    <td>FC Seats</td>
+                    <td>FC Cost</td>
+                    <td>SC Seats</td>
+                    <td>SC Cost</td>
+                    <td>TC Seats</td>
+                    <td>TC Cost</td>
+                    <td>Meal Type</td>
+                    <td style="width: 7%;">From City</td>
+                    <td style="width: 7%;">To City</td>
+                    <td>Discount(%)</td>
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let flightRow of airLineForm.get('flights')?.controls; let index = index">
+                <td><input class="form-control" [formControl]="flightRow.get('flightCode')" />
+                    <input class="form-control" type="hidden" [formControl]="flightRow.get('id')" />
+                </td>
+                <td><input class="form-control" [formControl]="flightRow.get('takeOff')" /></td>
+                <td><input class="form-control" [formControl]="flightRow.get('landingTime')" /></td>
+                <td>
+                  <ng-multiselect-dropdown [formControl]="flightRow.get('daysDto')" [placeholder]="'Select Days'" [settings]="dropdownSettings" [data]="days" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                </td>
+                <td><input class="form-control" [formControl]="flightRow.get('bussinessClassSeats')" /></td>
+                <td><input class="form-control" [formControl]="flightRow.get('bussinessClassSeatCost')" /></td>
+                <td><input class="form-control" [formControl]="flightRow.get('firstClassSeats')" /></td>
+                <td><input class="form-control" [formControl]="flightRow.get('firstClassSeatCost')" /></td>
+                <td><input class="form-control" [formControl]="flightRow.get('secondClassSeats')" /></td>
+                <td><input class="form-control" [formControl]="flightRow.get('secondClassSeatCost')" /></td>
+                <td><input class="form-control" [formControl]="flightRow.get('thirdClassSeats')" /></td>
+                <td><input class="form-control" [formControl]="flightRow.get('thirdClassSeatCost')" /></td>
+                <td><input class="form-control" [formControl]="flightRow.get('meal')" /></td>
+                <td>
+                    <select  style="height:28px;" class="form-control" [formControl]="flightRow.get('fromCity')">
+                        <option *ngFor="let city of cities; let index = index" [ngValue]="city.cityId">
+                            {{city.cityName}}
+                        </option>
+                    </select>
+                </td>
+                    <!-- <input class="form-control" [formControl]="flightRow.get('fromCity')" /></td> -->
+                <td>
+                    <select style="height:28px;" class="form-control" [formControl]="flightRow.get('toCity')">
+                        <option *ngFor="let city of cities; let index = index" [ngValue]="city.cityId">
+                            {{city.cityName}}
+                        </option>
+                    </select>
+                </td>
+                    <!-- <input class="form-control" [formControl]="flightRow.get('toCity')" /></td> -->
+                <td><input class="form-control" [formControl]="flightRow.get('discount')" /></td>
+                <td>
+                  <button class="btn btn-sm btn-warning" type="button" (click)="onRemoveRow(index)">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row m-2 p-2">
+        <div class="col-11"></div>
+        <button type="submit" class="col-1 btn btn-sm btn-success">Save</button>
+    </div>
+</form>

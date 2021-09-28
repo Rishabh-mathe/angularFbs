@@ -1,0 +1,22 @@
+.searchStringBox{
+    background-color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 21px;
+}
+.toFromDatBox{
+    text-align: center;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    box-shadow: 2px 1px 5px 0px;
+ }
+.arrowSimbol{
+    text-align: center;
+    margin-top: 23px;
+    font-size: 30px;
+}
+.flightBox{
+    text-align: center;
+    background-color: wheat;
+    border-radius: 10px;
+}

@@ -1,0 +1,31 @@
+.airLineFormBoxes{
+    background-color: white;
+    border-radius: 5px;
+}
+
+label{
+    font-weight: 500;
+    font-family: system-ui;
+}
+.addButton{
+    height: 96px;
+    text-align: center;
+    background-color: #909db9;
+    border-radius: 14px;
+    color: white;
+    cursor: pointer;
+}
+.addButton:hover{
+    background-color: #6983bd;
+    box-shadow: 0px 0px 5px 1px;
+}
+.addButton>h5{
+    font-size: 69px;
+}
+.airLineFormBoxes>table>thead>tr>td{
+    font-size: 11px;
+}
+input{ 
+    height:28px ;
+    font-size: 12px;
+}

@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.navlogo{
+    color: wheat;
+    font-weight: bold;
+    font-style: oblique;
+    font-family: system-ui;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+}
+.navBtn{
+    margin-right: 8px;
+    color: #fffefe;
+    font-weight: 500;
+}
+.logo{
+    height: 75px;
+    width: 45%;
+    box-shadow: 0px 0px 5px 1px;
+    border-radius: 15px;
+}
+.nav-link{
+    color: #ffc107 !important;
+    font-weight: 600 !important;
+    padding: 4px 8px 4px 8px;
+    margin: 5px 5px 0px 0px;
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: wheat;
+    font-weight: 700;
+    background-color: darkolivegreen;
+    border-radius: 11px;
+}
+
+/* style for drop down multiselect */
+.dropdown-multiselect__caret{
+	padding: 0px;
+    height: 28px;
+    width: 19px;
+}
+.dropdown-btn{
+	height: inherit;
+    padding: 5px 0px 0px 5px;
+    font-size: 10px;
+}
+.multiselect-dropdown{
+	height: 28px;
+}
+.multiselect-dropdown>div:first{
+	height: inherit;
+}
